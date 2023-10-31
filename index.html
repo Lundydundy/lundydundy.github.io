@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+        <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>        
+        <title>Ontario Real Estate: Buy & Sell Homes On Your Terms | Wahi</title>
+        <link rel="icon" href="https://wahi.com/wp-content/uploads/2023/01/cropped-wahi-favicon-lg2-32x32.png" sizes="32x32">
+        <link href="styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="text/babel">
+            function App() {
+                return(
+                    <div className="contain">
+                        <Nav />
+                        <Search />
+                        <Add_One />
+                        <Featured />
+                        <HomesForSale />
+                        <InTheKnow />
+                        <BestOffer/>
+                        <HomeYouLove />
+                        <CustomersTalking />
+                        <WahiGuy />
+                        <FAQ />
+                        <ChatDiv />
+                        <NewsInsights />
+                        <Footer />
+                    </div>            
+                );
+            }
+
+            function Nav() {
+                const [resMenuDisplay, setResMenuDisplay] = React.useState('none')
+                const [resMenuItems, setResMenuItems] = React.useState('none')
+                const [navDisplay, setNavDisplay] = React.useState('flex')
+                const [marketInsightMenu, setMarketInsightMenu ] = React.useState('none')
+                const [contactMenu, setContactMenu] = React.useState('none')
+                const [marketInsightHoverMenu, setMarketInsightHoverMenu] = React.useState('none')
+
+                const handleHover = () => {
+                    if(marketInsightHoverMenu == 'none'){
+                        setMarketInsightHoverMenu('flex');
+                    }
+                }
+
+                const handleOffHover = () => {
+                    setMarketInsightHoverMenu('none')
+                }
+
+                const handleMenuClick = () => {
+                    if(resMenuDisplay === "none") {
+                        setResMenuDisplay('flex')
+                        setNavDisplay('none')
+                        setResMenuItems('flex')
+                    }
+                    else{
+                        setResMenuDisplay('none')
+                        setResMenuItems('none')
+                        setNavDisplay('flex')
+                        setContactMenu('none')
+                        setMarketInsightMenu('none')
+                    }
+                }
+
+                const handleInsightMenuClick = () => {
+                    if(marketInsightMenu === 'none'){
+                    setMarketInsightMenu('flex')
+                    setResMenuItems('none')
+                    }
+                    else{
+                        setMarketInsightMenu('none')
+                        setResMenuItems('flex')
+
+                    }
+                }
+
+                const handleContactMenuClick = () => {
+                    if(contactMenu === 'none'){
+                    setContactMenu('flex')
+                    setResMenuItems('none')
+
+                    }
+                    else{
+                        setContactMenu('none')
+                        setResMenuItems('flex')
+
+                    }                
+                }
+                return (
+                    <nav className="fixed-top bg res">
+                        <div style={{display: navDisplay}} className="con">
+                            <button onClick={handleMenuClick} type="button" className="dropdown-btn">
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                    <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                                </svg>
+                            </button>
+                            <img className="logo" src="https://wahi.com/menu/ca/en/header/logo.svg" alt="Company Logo"/>
+                                <div className="contact">
+                                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16.344 12.168-1.4-1.4a1.98 1.98 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.981 1.981 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.8 0C-.638 5.323 1.1 9.542 4.78 13.22c3.68 3.678 7.9 5.418 11.564 1.752a1.828 1.828 0 0 0 0-2.804Z"/>
+                                    </svg>
+                                    (833) 924-4929
+                                </div>
+                                <ul className="menu-items">
+                                    <li className="nav-item">Browse Homes</li>
+                                    <li className="nav-item">Whats My Home Worth</li>
+                                    <li className="nav-item">Find A Realtor</li>
+                                    <div onMouseOver={handleHover} onMouseOut={handleOffHover}>
+                                    <li className="nav-item">
+                                        <div className="market">
+                                            Market Insights & Tools
+                                            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                                            </svg>
+                                        </div>
+                                    </li>
+                                    <div style={{display: marketInsightHoverMenu}} className="market-menu">
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/realestate-news.svg" alt="" />
+                                                Real Estate News
+                                            </div>
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/pulse.svg" alt="" />
+                                                Market Pulse
+                                            </div>
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/mortgage.svg" alt="" />
+                                                Mortgage - Qualify Now!
+                                            </div>
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/mortgage.svg" alt="" />
+                                                Mortgage and Financial Calculator
+                                            </div>
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/browse-home.svg" alt="" />
+                                                Neighbourhood Finder
+                                            </div>
+                                            <div className="">
+                                                <img src="https://wahi.com/wp-content/uploads/2023/09/guides.svg" alt="" />
+                                                GTA Neighbourhoods Guide
+                                            </div>
+                                        </div>                           
+                                    </div>
+                                </ul>
+                                <div className="login-and-signup">
+                                    <ul className="login-signup">
+                                        <button className="hover-button login">LOG IN</button>
+                                        <button className="hover-button">SIGN UP</button>
+                                    </ul>
+                                </div>
+                                <p className="responsive-login"><a>Login</a></p>
+                        </div>
+                        <div style={{display: resMenuDisplay}} className="responsive-menu">            
+                            <div className="responsive-menu-head">
+                                <button onClick={handleMenuClick}>
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                </button>
+                                <div className="logo-div">
+                                    <img className="logo" src="https://wahi.com/menu/ca/en/header/logo.svg" alt="Company Logo"/>
+                                </div>
+                            </div>
+                            <div style={{display: resMenuItems}} className="responsive-menu-items-div">
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/browse-home.svg" alt="" />
+                                    Browse Homes
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/home-worth.svg" alt="" />
+                                    What’s My Home Worth?
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/find-realtor.svg" alt="" />
+
+                                    Find A Realtor
+                                </div>
+                                <div onClick={handleInsightMenuClick} className="responsive-menu-item" style={{cursor:"pointer"}}>                                        
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/marketinsight.svg" alt="" />
+
+                                    Market Insights & Tools
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    </svg>                                    
+                                </div>
+                                <div onClick={handleContactMenuClick} className="responsive-menu-item" style={{cursor:"pointer"}}>
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/contact.svg" alt="" />
+
+                                    Contact Us
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    </svg>                                    
+                                </div>
+                            </div>
+                            <div style={{display:marketInsightMenu}} className="responsive-menu-market-items">
+                                <div style={{cursor:"pointer"}} onClick={handleInsightMenuClick} className="responsive-menu-item">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                    </svg>
+                                    <strong>Market Insights & Tools</strong>
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/realestate-news.svg" alt="" />
+                                    Real Estate News
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/pulse.svg" alt="" />
+                                    Market Pulse
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/mortgage.svg" alt="" />
+                                    Mortgage - Qualify Now!
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/mortgage.svg" alt="" />
+                                    Mortgage and Financial Calculator
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/browse-home.svg" alt="" />
+                                    Neighbourhood Finder
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/guides.svg" alt="" />
+                                    GTA Neighbourhoods Guide
+                                </div>
+                            </div>
+                            <div style={{display:contactMenu}} className="responsive-menu-contact-items">
+                                <div style={{cursor:"pointer"}} onClick={handleContactMenuClick} className="responsive-menu-item">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                    </svg>
+                                    <strong>Contact Us</strong>
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/Sms-1.svg" alt="" />
+                                    Text A Realtor: (833) 924-4929
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/wtsp.svg" alt="" />
+                                    Text A Realtor Via WhatsApp
+                                </div>
+                                <div className="responsive-menu-item">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/09/call.svg" alt="" />
+                                    Call Us: (833) 924-4929
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </nav>  
+                );
+            }
+            
+            function Search() {
+                return(
+                <div className="search-div">
+                    <div className="inside-search-div">
+                        <h1>Be a Real Estate Know-It-All</h1>
+                        <div className="search-blurb">
+                            <strong>Make your best real estate decisions with the latest listings,<br /> property insights and the right realtor for you.</strong>
+                        </div>
+                        <SearchBox />
+                    </div>
+                   
+                </div>
+                );
+            }
+
+            function SearchBox() {
+                const [clicked, setClicked] = React.useState('Browse Homes')
+                const [menuItems, setMenuItems] = React.useState(["Browse Homes", "Home Estimate", "Find A Realtor"])
+                const clickStyle = {
+                    background: "white",
+                    color: "black",
+                    display: "block"
+                                      
+                }
+                const handleClick = (item) => {
+                    setClicked(item)
+                }
+                  
+                return(
+                    <div className="search-box">
+                        <div className="tab-options">
+                            {
+                                menuItems.map(item => {
+                                    if (clicked.includes(item)){
+                                        
+                                    return (
+                                        
+                                        <div className="stylediv" style={clickStyle}>
+                                            <div>
+                                                <span>{item}</span>
+                                            </div>                                     
+                                        </div>
+                                    
+                                    )
+                            } else{
+
+                                return (
+                                        
+                                        <div onClick={() => handleClick(item)}>
+                                            <div>
+                                                <span>{item}</span>
+                                            </div>
+                                        </div>
+                                    )}
+                                }   
+                            
+                            )
+                            }                           
+                        </div>
+                        <div className="tab">
+                            <div id="browse-homes" style={{display: clicked === "Browse Homes" ? "flex" : "none"}}>
+                                <img src="https://wahi.com/wp-content/uploads/2023/05/Real-Estate-House.png" alt=""/>
+                                <span>Start your search with the latest listings</span>
+                                <button className="btn btn-primary">SEARCH HOMES</button>                         
+                            </div>
+                            <div id="home-estimate" style={{display: clicked === "Home Estimate" ? "flex" : "none"}}>
+                                <img src="https://wahi.com/wp-content/uploads/2023/05/Real-Estate-Market-Scale-1.png" alt="" />
+                                <span>Discover how much your home is worth</span>
+                                <button style={{width:"max-content"}} className="btn btn-primary">HOME ESTIMATE</button>                         
+                            </div>
+                            <div id="find-a-realtor" style={{display: clicked === "Find A Realtor" ? "flex" : "none"}} className="person-div">
+                                <div>
+                                    <span>I am</span>
+                                </div>
+                                <div id="find-a-realtor-btns" style={{}}>
+                                    <button className="btn btn-primary">
+                                        A BUYER 
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                                        </svg>
+                                    </button>                         
+                                    <button className="btn btn-primary">
+                                        A SELLER
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                                        </svg>
+                                    </button>                         
+                                    <button className="btn btn-primary">
+                                        BOTH
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                                        </svg>                                
+                                    </button> 
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            function Add_One(){
+                return(
+                    <div className="add-one-div">
+                        <div className="add-one-words">
+                            <h2>
+                                <span style={{color: "#2f2f2f"}}>Get Matched with the Right Realtor for You</span>
+                            </h2>
+                        </div>
+                        <div className="line"></div>
+                        <div className="add-one-words-text">
+                            <p>We’ll connect you to the top real estate agents based on proven results in your area, so you know you’re making the right decision.</p>
+                        </div>
+                        <img src="https://wahi.com/wp-content/uploads/2023/08/realtor-profile-cards.png" alt="" />
+                        <button className="btn btn-primary">LEARN MORE</button>
+                    </div>
+                );
+            }
+
+            function Featured() {
+                return(
+                    <div className="featured-div">
+                        <h3>As featured in</h3>
+                        <img className="featured-full" src="featured.png" alt="" />
+                        <img className="featured-mini" src="featured-mini.png" alt="" />
+                    </div>
+                );
+            }
+
+            function HomesForSale(){
+                return(
+                    <div className="homes-for-sale-div">
+                        <div>
+                            <h2>New Homes for Sale</h2>
+                            <div className="line"></div>
+                            <p>Browse listings with agent-level insights.</p>
+                        </div>
+                        <div className="card-list owl-carousel">
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+                            <div className="card item">
+                                <div className="filter"></div>
+                                <img src="https://cdn.wahi.com/listings/forward/oreb/IMG-1361941_0.jpg?f=webp&w=750&q=75" alt="" />
+                                <div className="details">
+                                    <h4>$1,100,000</h4>
+                                    <p className="cashback">$8600 Cashback</p>
+                                    <p>37 Frontier Ptwy | Detached</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                )
+            }
+            function InTheKnow() {
+                return (
+                    <div className="in-the-know">
+                        <img src="https://wahi.com/wp-content/uploads/2023/06/Get-so-in-the-know.png" alt="" />
+                        <div className="in-the-know-details">
+                            <h2>Get so in the know, with Wahi</h2>
+                            <div className="line-in"></div>
+                            <span>Now you can get agent-level access to property insights and get matched with the top realtors in your area. Get more control, get more access and get so in the know with Wahi.</span>
+                        </div>
+                    </div>
+                )
+            }
+
+            function BestOffer() {
+                return(
+                    <div className="best-offer-div">
+                        <div>
+                            <h2>Turn an Offer Into the Best Offer</h2>
+                            <div className="line"></div>
+                            <p>We want you to real estate with confidence by getting the same data and insights agents get.</p>
+                        </div>
+                        <div style={{minWidth: "300px", display: "flex", justifyContent:"center"}}>
+                            <div className="card-best-offer-list">
+                                <div className="card-best-offer">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/05/House-Heart.png" alt=""/>
+                                    <h4>Personalized property listings</h4>
+                                    <p>Get access to more data and insights about the listings you love, so you can feel confident you’re making the best choice.</p>
+                                    <button className="btn">BROWSE HOMES</button>
+                                </div>
+                                <div className="card-best-offer">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/05/Real-Estate-Action-House-Information.png" alt=""/>
+                                    <h4>Track your biggest asset</h4>
+                                    <p>Our instant home value estimate helps you track your home’s value so you’re ready to make a move whenever it’s time.</p>
+                                    <button className="btn">GET ESTIMATE</button>
+                                </div>
+                                <div className="card-best-offer">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/05/Single-Man-Search.png" alt=""/>
+                                    <h4>Vetted agents at your service</h4>
+                                    <p>Connect with the perfect local expert. No more settling for average, we’ll get you the best of the best.</p>
+                                    <button className="btn">FIND REALTOR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            function HomeYouLove() {
+                return(
+                    <div className="home-you-love">
+                        <div>
+                            <h2>Find a Home You Love</h2>
+                            <div className="line"></div>
+                            <p>Browse the latest property listings and find your next home.</p>
+                        </div>
+                        <div className="latest-property-list">
+                            <div className="property-list">
+                                <a href="#">Homes for Sale in Brantford</a>
+                                <a href="#">Homes for Sale in Ottawa</a>
+                                <a href="#">Homes for Sale in Burlington</a>
+                                <a href="#">Homes for Sale in Brampton</a>
+                                <a href="#">Homes for Sale in Oshawa</a>
+                                <a href="#">Homes for Sale in Oakville</a>
+                            </div>
+                            <div className="property-list">
+                                <a href="#">Homes for Sale in Toronto</a>
+                                <a href="#">Homes for Sale in Windsor</a>
+                                <a href="#">Homes for Sale in Kitchener</a>
+                                <a href="#">Homes for Sale in Thunder Bay</a>
+                                <a href="#">Homes for Sale in Guelph</a>
+                                <a href="#">Homes for Sale in Barrie</a>
+                            </div>
+                            <div className="property-list">
+                                <a href="#">Homes for Sale in Milton</a>
+                                <a href="#">Homes for Sale in London</a>
+                                <a href="#">Homes for Sale in Caledon</a>
+                                <a href="#">Homes for Sale in Ajax</a>
+                                <a href="#">Homes for Sale in Cambridge</a>
+                                <a href="#">Homes for Sale in North Bay</a>
+                            </div>
+
+                        </div>
+                    </div>
+                )
+            }
+
+            function CustomersTalking() {
+                return(
+                    <div className="customers-talking">
+                        <div>
+                            <h2>Our Customers Have Been Talking</h2>
+                            <div className="line"></div>
+                            <img src="https://wahi.com/wp-content/uploads/2023/05/5stars.png" alt="" />
+                        </div>
+                        <div className="card-feedback-list">
+                            <div className="card-feedback">
+                                <p>"We're both DIY people, so we liked being hands-on throughout the process. With Wahi, you're in control of your homebuying experience, and the $12,600 cashback in your pocket is worth it. We would definitely recommend Wahi to all homebuyers!"</p>
+                                <h5>Matt and Nic</h5>
+                                <p>Toronto</p>
+                            </div>
+                            <div className="card-feedback">
+                                <p>"We're both DIY people, so we liked being hands-on throughout the process. With Wahi, you're in control of your homebuying experience, and the $12,600 cashback in your pocket is worth it. We would definitely recommend Wahi to all homebuyers!"</p>
+                                <h5>Matt and Nic</h5>
+                                <p>Toronto</p>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            function WahiGuy() {
+                return(
+                    <div>
+                        <div className="wahi-guy">
+                            <img className="guy" src="https://wahi.com/wp-content/uploads/2023/08/wahi-guy.png" alt="" />
+                            <div className="wahi-guy-details">
+                                <h2>Real Estate With Confidence With the Wahi App</h2>
+                                <div className="line-in"></div>
+                                <span>It’s like a personal real estate assistant on the go! Personalized listings you’ll love, open houses nearby, plus, chat with a real estate expert to get all your real estate questions answered on-the-go.</span>
+                                <div className="appstore">
+                                    <img src="https://wahi.com/wp-content/uploads/2023/05/appstore-wahi-300x88.png" alt=""/>
+                                    <img src="https://wahi.com/wp-content/uploads/2023/05/googleplay-wahi-300x88.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            function FAQ(){
+                const [flipped, setFlipped] = React.useState([])
+                const handleFAQclick = (id) => {
+                    if (flipped.includes(id)){
+                        setFlipped([flipped.filter(ids => ids != id)])
+                        console.log(flipped)
+                    }
+                    else{
+                        setFlipped([...flipped, id])
+                        console.log(flipped)
+                    }
+                }
+                return(
+                    <div className="faq">
+                        <h1>FAQs</h1>
+                        <div onClick={(event) => handleFAQclick('q1')} id="q1" className="faq-question one" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                            <div id="q1" className="faq-question-drop">
+                                <p id="q1">
+                                    How do I get cashback with Wahi?
+                                </p>
+                                <svg className={flipped.includes("q1") ? "faq-flip" : "" + "w-6 h-6 text-gray-800 dark:text-white"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                    <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                                </svg>
+                            </div>
+
+                            <div id="q1" className="collapse" id="collapse1">
+                                <div id="q1">
+                                    If you’re looking to take a hands-on role in your home buying journey, check out  program, where customers use Wahi as their buying agent and get up to 1.5% of the sale price in cashback after close – this translates to an average of $15K* back in your pocket. Every eligible property has the cashback amount listed right on the property.                  
+                                </div>
+                            </div>    
+                        
+                        </div>
+                        <div onClick={()=>handleFAQclick('q2')} className="faq-question" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                            <div className="faq-question-drop">
+
+                            <p>
+                                What’s the difference between a Wahi agent and a realtor from your network?
+
+                            </p>
+                            <svg className={flipped.includes("q2") ? "faq-flip" : "" +"w-6 h-6 text-gray-800 dark:text-white" } aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                            </svg>
+                            </div>
+
+                            <div className="collapse" id="collapse2">
+                                <div>
+                                    <p>A Wahi agent is a salaried realtor, based in our Toronto office servicing Wahi’s MyBuy program. They will provide you with remote service through your home buying journey, from finding properties through to managing the offer and closing stage. Instead of in-person tours, Tour Assistants meet you at the property for your showings. This digital model allows Wahi to pass back savings to consumers with up to 1.5% of the sale price back in cash after close with our MyBuy program.</p>
+                                    
+                                    <p>Top independent realtors, who are among the top 10% in each region and for each property type, have been invited by Wahi to join our network. They are proven experts in their local area, delivering results and quality service to their clients with a traditional real estate model. Wahi’s data-driven recommendation engine only matches you with top tier realtors based on your property search criteria.</p>                            
+                                </div>
+                            </div>    
+                        
+                        </div>
+                        <div onClick={()=>handleFAQclick('q3')} className="faq-question" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+                            <div className="faq-question-drop">
+
+                            <p>
+                                How does Wahi recommend top realtors?
+                            </p>
+                            <svg className={flipped.includes("q3") ? "faq-flip" : "" +"w-6 h-6 text-gray-800 dark:text-white"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                            </svg>
+                            </div>
+                            <div className="collapse" id="collapse3">
+                                <div>
+                                    Wahi’s data-driven recommendation engine does the heavy lifting to match you with proven experts in your property search area. Only the top 10% of realtors are invited to join the Wahi platform so we’ll only recommend top-tier local realtors with the right expertise, in the right location. 
+                                </div>
+                            </div>    
+                        
+                        </div>
+                        <div onClick={()=>handleFAQclick('q4')} className="faq-question" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+                            <div className="faq-question-drop">
+
+                            <p>
+                                How do I get cashback with Wahi?
+                            </p>
+                            <svg class={flipped.includes("q4") ? "faq-flip" : "" +"w-6 h-6 text-gray-800 dark:text-white"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                            </svg>
+                            </div>
+                            <div className="collapse" id="collapse4">
+                                <div>
+                                    Wahi is currently available in Ontario. However, Wahi’s MyBuy service is only available in select cities. Click here for more detail about where our MyBuy service is available.                                </div>
+                            </div>    
+                        
+                        </div>
+
+                    </div>
+                )
+            }
+
+            function ChatDiv() {
+                return(
+                    <div className="chat-div">
+                        <div className="chat-div-1">
+                            <h3>We’re always here to help answer any and all of your real estate questions.</h3>
+                        </div>
+                        <div className="chat-div-2">
+                            <h3>Don’t hesitate to reach out!</h3>
+                        </div>
+                        <button className="hover-button">LET'S CHAT</button>
+                    </div>
+                )
+            }
+
+            function NewsInsights(){
+                return(
+                    <div className="news-insights-div">
+                        <div>
+                            <h3>Latest Real Estate Market Insights and News</h3>
+                            <div className="line"></div>
+                        </div>
+                        <h5>MORE ARTICLES ></h5>
+                        <div className="news-insights-links">
+                            <div className="news-insights-link">
+                                <img src="https://wahi.com/wp-content/uploads/2023/09/BC-Best-time-to-sell-a-home.jpg" alt="" />
+                                <strong>The Best Time to Sell a Home in B.C.</strong>
+                                <p>Here are the three best methods to determine the right time to see...</p>
+                            </div>
+                            <div className="news-insights-link">
+                                <img src="https://wahi.com/wp-content/uploads/2023/09/BC-Best-time-to-sell-a-home.jpg" alt="" />
+                                <strong>The Best Time to Sell a Home in B.C.</strong>
+                                <p>Here are the three best methods to determine the right time to see...</p>
+                            </div>
+                            <div className="news-insights-link">
+                                <img src="https://wahi.com/wp-content/uploads/2023/09/BC-Best-time-to-sell-a-home.jpg" alt="" />
+                                <strong>The Best Time to Sell a Home in B.C.</strong>
+                                <p>Here are the three best methods to determine the right time to see...</p>
+                            </div>
+                            <div className="news-insights-link">
+                                <img src="https://wahi.com/wp-content/uploads/2023/09/BC-Best-time-to-sell-a-home.jpg" alt="" />
+                                <strong>The Best Time to Sell a Home in B.C.</strong>
+                                <p>Here are the three best methods to determine the right time to see...</p>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            function Footer(){
+                return(
+                    <footer className="footer">
+                        <div className="footer-grid">
+                            <div className="footer-grid-1">
+                                <img className="footer-logo" src="https://wahi.com/wp-content/uploads/2023/04/Black-wahi-logo-300x93-1.png" alt="" />
+                                <p className="p1">Wahi empowers home buyers and sellers with an innovative approach to real estate.</p>
+                                <div className="footer-grid-1-address">
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 21">
+                                        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                        <path d="M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                                        <path d="M13.8 12.938h-.01a7 7 0 1 0-11.465.144h-.016l.141.17c.1.128.2.252.3.372L8 20l5.13-6.248c.193-.209.373-.429.54-.66l.13-.154Z"/>
+                                        </g>
+                                    </svg>
+                                <p>
+                                    96 Spadina Ave. #301, Toronto, ON M5V 2J6
+                                </p>
+                                </div>
+                                <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20 3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L12.414 16H20a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM7.5 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/>
+                                    </svg>
+                                <p>Chat with Wahi</p>
+                                </div>
+                                <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
+                                        <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
+                                    </svg>
+                                <p>(833) 924-4929</p>
+                                </div>
+                                <div className="faq-question" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+                                    <div id="foot1" className="faq-question-drop">
+                                        <h5 id="q1">
+                                        Wahi Services
+                                        </h5>
+                                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                            <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                                        </svg>
+                                    </div>
+                                    <div className="collapse" id="collapse5">
+                                        <div className="res-footer-menu">
+                                            <p><a>Browse Homes for Sale</a></p>
+                                            <p><a>MyBuy – Cashback Program</a></p>
+                                            <p><a>What’s My Home Worth?</a></p>
+                                            <p><a>Find a Realtor in Your Area</a></p>
+                                            <p><a>Auctions – Technology Platform</a></p>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="faq-question" data-bs-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapse6">
+                                    <div id="foot1" className="faq-question-drop">
+                                        <h5 id="q1">
+                                        About
+                                        </h5>
+                                        <svg className="w-8 h-13 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#BC4E40" viewBox="0 0 16 10">
+                                            <path d="M15.434 1.235A2 2 0 0 0 13.586 0H2.414A2 2 0 0 0 1 3.414L6.586 9a2 2 0 0 0 2.828 0L15 3.414a2 2 0 0 0 .434-2.179Z"/>
+                                        </svg>
+                                    </div>
+                                    <div className="collapse" id="collapse6">
+                                        <div className="res-footer-menu">
+                                            <p><a>About Us</a></p>
+                                            <p><a>Press Centre</a></p>
+                                            <p><a>Careers</a></p>
+                                            <p><a>FAQs</a></p>
+                                            <p><a>Contact Us</a></p>
+                                            <p><a>Site Map</a></p>                                     
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div className="footer-brands">
+                                    <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#EB7161" viewBox="0 0 20 20">
+                                        <path fill="#EB7161" d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"/>
+                                    </svg>
+                                    </div>
+                                    <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#EB7161" viewBox="0 0 8 19">
+                                        <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                    <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#EB7161" viewBox="0 0 15 15">
+                                        <path fill-rule="evenodd" d="M7.979 5v1.586a3.5 3.5 0 0 1 3.082-1.574C14.3 5.012 15 7.03 15 9.655V15h-3v-4.738c0-1.13-.229-2.584-1.995-2.584-1.713 0-2.005 1.23-2.005 2.5V15H5.009V5h2.97ZM3 2.487a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" clip-rule="evenodd"/>
+                                        <path d="M3 5.012H0V15h3V5.012Z"/>
+                                    </svg>
+                                </div>
+                                    <div>
+                                    <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#EB7161" viewBox="0 0 21 16">
+                                        <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
+                                    </svg>
+                                </div>
+    
+                                </div>
+                                <div className="footer-logos-div">
+                                    <img className="footer-logo-2"src="https://wahi.com/wp-content/uploads/2023/05/darkgray-seal-280-80-bbb-1395998-.png" alt="" />
+                                    <img className="footer-logo-3"src="https://wahi.com/wp-content/uploads/2023/08/canadien-business-logo.png" alt="" />
+                                </div>
+                                </div>
+                            <div className="footer-grid-2">
+                                <h5>Wahi Services</h5>
+                                <a>Browse Homes for Sale</a>
+                                <a>MyBuy – Cashback Program</a>
+                                <a>What’s My Home Worth?</a>
+                                <a>Find a Realtor in Your Area</a>
+                                <a>Auctions – Technology Platform</a>
+                            </div>
+                            <div className="footer-grid-3">
+                                <h5>About</h5>
+                                <a>About Us</a>
+                                <a>Press Centre</a>
+                                <a>Careers</a>
+                                <a>FAQs</a>
+                                <a>Contact Us</a>
+                                <a>Site Map</a>
+                            </div>
+                            <div className="footer-grid-4">
+                                <h5>Get The Wahi App</h5>
+                                <div className="footer-appstore">
+                                    <a><img src="https://wahi.com/wp-content/uploads/2023/05/appstore-wahi-300x88.png" alt=""/></a>
+                                    <a><img src="https://wahi.com/wp-content/uploads/2023/05/googleplay-wahi-300x88.png" alt=""/></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="last-div">
+                            <div>
+                                <a><span>© 2023 Wahi</span></a>
+                                <a><span>Terms of Use</span></a>
+                                <a><span>Privacy Policy</span></a>
+                            </div>
+                        </div>
+                    </footer>
+                )
+            }
+            ReactDOM.render(<App />, document.querySelector("#app"));
+        </script>
+    </body>
+</html>
